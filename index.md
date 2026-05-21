@@ -88,17 +88,6 @@ Escaped characters: \*not italic\*, \`not code\`, \[not a link\], \\ literal bac
 > console.log("hello from inside a quote");
 > ```
 
-As Kanye West said: 
-
-> We're living the future so 
-> the present is our past. 
- 
-> [!NOTE] 
-> This is a note blockquote. 
- 
-> [!WARNING] 
-> This is a warning blockquote.
-
 ---
 
 ## 5. Lists
