@@ -3,7 +3,7 @@ title: docs-test
 description: Markdown rendering testbed for a custom Jekyll theme
 author: zBuLe
 url: ""
-baseurl: ""
+baseurl: "/docs-test"
 
 # Build
 markdown: kramdown
