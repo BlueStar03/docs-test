@@ -601,11 +601,11 @@ In a code span, no characters need escaping: `*not italic*`, `[not a link](url)`
 >
 > Greatest caution
 
-> [!WARNING]  
-> An example showing the `warning` type prompt.  
+> [!WARNING] ""
+> No Title the `warning` type prompt.  
 > very warning
 > 
->> beware !  
+>> [!Caution] A great warning
 >
 > Greatest caution
 {: .prompt-warning }
@@ -654,5 +654,17 @@ In a code span, no characters need escaping: `*not italic*`, `[not a link](url)`
 >> [!QUESTION]  beware !  
 >
 > Greatest caution
+
+> [!WARNING] `Run npm install`
+
+---
+
+## Table test
+
+| Method      | Description                          |
+| :---------- | :----------------------------------- |
+| `GET`       | :material-check:     Fetch resource  |
+| `PUT`       | :material-check-all: Update resource |
+| `DELETE`    | :material-close:     Delete resource |
 
 *End of document.*

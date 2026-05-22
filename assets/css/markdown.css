@@ -137,7 +137,7 @@
    driven by _data/admonitions.yml */
 .markdown-body .markdown-alert {
   --alert-color: var(--color-text-muted);
-  padding: 0.75em 1em;
+  padding: 0.5em 1em;
   margin: 0 0 1em;
   border-left: 4px solid var(--alert-color);
   border-radius: 0 6px 6px 0;
@@ -154,6 +154,18 @@
   margin-bottom: 0.5em;
   color: var(--alert-color);
 }
+.markdown-body .markdown-alert-title-text {
+  font-size: 0.95em;
+  font-style: italic;
+  font-weight: 500;
+  flex: 1;
+}
+.markdown-body .markdown-alert-title-text code {
+  /* Code in title uses the alert color for the chip */
+  background: color-mix(in srgb, var(--alert-color) 22%, transparent);
+  color: var(--alert-color);
+  font-weight: 500;
+}
 .markdown-body .markdown-alert-icon {
   display: inline-flex;
   align-items: center;
@@ -161,6 +173,19 @@
 }
 .markdown-body .markdown-alert-icon svg {
   fill: currentColor;
+}
+
+/* No-title variant — > [!TYPE] "" — removes the title row from static alerts.
+   Collapsibles keep an empty summary so the chevron stays clickable. */
+.markdown-body .markdown-alert.markdown-alert-no-title:not(details) > .markdown-alert-title {
+  display: none;
+}
+.markdown-body details.markdown-alert.markdown-alert-no-title > summary.markdown-alert-title {
+  min-height: 1.25em;
+  margin-bottom: 0;
+}
+.markdown-body details.markdown-alert.markdown-alert-no-title[open] > summary.markdown-alert-title {
+  margin-bottom: 0.5em;
 }
 
 /* Collapsible variant — <details>/<summary> */
@@ -191,7 +216,7 @@
   transform: rotate(45deg);
 }
 
-/* Chirpy-style prompts — IAL syntax {: .prompt-TYPE }
+/* Prompts — IAL syntax {: .prompt-TYPE }
    Icon goes inline at the start of the first paragraph (no title row).
    Color comes from the same admonitions config via --alert-color. */
 .markdown-body blockquote[class*="prompt-"] {

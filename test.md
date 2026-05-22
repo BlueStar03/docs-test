@@ -166,3 +166,15 @@ The HTML specification
 is maintained by the W3C.
 
 ==marked==
+
+> [!WARNING]
+> Default title (capitalized from type).
+
+> [!WARNING] Custom Title
+> Overrides the default title.
+
+> [!WARNING] Use `npm install` first
+> Inline formatting (code, bold, italic) is preserved in the title.
+
+> [!WARNING] ""
+> No title row at all — just content with the colored border and background. `code`
