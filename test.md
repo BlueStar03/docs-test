@@ -178,3 +178,26 @@ is maintained by the W3C.
 
 > [!WARNING] ""
 > No title row at all — just content with the colored border and background. `code`
+
+---
+
+## file code
+
+```javascript
+const animals = ["fox", "owl", "otter", "lynx"];
+const pick = animals[Math.floor(Math.random() * animals.length)];
+
+console.log(`Random animal: ${pick}`);
+```
+{: file='an_imal-Pick.js'}
+
+
+
+```javascript
+const animals = ["fox", "owl", "otter", "lynx"];
+const pick = animals[Math.floor(Math.random() * animals.length)];
+
+console.log(`Random animal: ${pick}`);
+```
+{: file='example.js' window='linux' numbers='true' }
+---

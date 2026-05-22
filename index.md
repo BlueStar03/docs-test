@@ -14,6 +14,24 @@ A single document exercising the full range of features a typical Markdown rende
 
 ---
 
+## 0. Docs
+
+
+<ul>
+{% assign docs = site.pages | where_exp: "p", "p.path contains '.md'" | sort: "title" %}
+{% for doc in docs %}
+  
+    <li>
+      <a href="{{ doc.url | relative_url }}">
+        {{ doc.title | default: doc.name }}
+      </a>
+    </li>
+
+{% endfor %}
+</ul>
+
+---
+
 ## 1. Headings
 
 # H1 — Heading Level 1
@@ -668,3 +686,16 @@ In a code span, no characters need escaping: `*not italic*`, `[not a link](url)`
 | `DELETE`    | :material-close:     Delete resource |
 
 *End of document.*
+
+<ul>
+{% assign docs = site.pages | where_exp: "p", "p.path contains '.md'" | sort: "title" %}
+{% for doc in docs %}
+  {% unless doc.path == page.path %}
+    <li>
+      <a href="{{ doc.url | relative_url }}">
+        {{ doc.title | default: doc.name }}
+      </a>
+    </li>
+  {% endunless %}
+{% endfor %}
+</ul>

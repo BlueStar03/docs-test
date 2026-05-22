@@ -137,7 +137,7 @@
    driven by _data/admonitions.yml */
 .markdown-body .markdown-alert {
   --alert-color: var(--color-text-muted);
-  padding: 0.5em 1em;
+  padding: 0.75em 1em;
   margin: 0 0 1em;
   border-left: 4px solid var(--alert-color);
   border-radius: 0 6px 6px 0;
@@ -155,9 +155,7 @@
   color: var(--alert-color);
 }
 .markdown-body .markdown-alert-title-text {
-  font-size: 0.95em;
-  font-style: italic;
-  font-weight: 500;
+  /* Hook for customizing title appearance (size, casing, letter-spacing, etc.) */
   flex: 1;
 }
 .markdown-body .markdown-alert-title-text code {
@@ -216,7 +214,7 @@
   transform: rotate(45deg);
 }
 
-/* Prompts — IAL syntax {: .prompt-TYPE }
+/* Chirpy-style prompts — IAL syntax {: .prompt-TYPE }
    Icon goes inline at the start of the first paragraph (no title row).
    Color comes from the same admonitions config via --alert-color. */
 .markdown-body blockquote[class*="prompt-"] {
@@ -290,6 +288,212 @@
 .markdown-body .highlight,
 .markdown-body .highlighter-rouge { margin: 0 0 1em; }
 .markdown-body .highlighter-rouge pre { margin: 0; }
+
+/* Windowed code blocks
+   Title bar with language label, filename, copy button.
+   Three window styles (windows | macos | linux).
+   Optional line numbers and line highlighting.
+   See assets/js/code-blocks.js */
+.markdown-body div.code-block-windowed {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--color-bg);
+  margin: 0 0 1em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.markdown-body div.code-block-windowed.has-lang-color {
+  border-color: color-mix(in srgb, var(--lang-color) 50%, var(--color-border));
+}
+
+/* --- Title bar: three-section grid (left | center | right) --- */
+.markdown-body .code-block-titlebar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 0.75em;
+  padding: 0.4em 0.5em 0.4em 0.85em;
+  background: var(--color-bg-alt);
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.85em;
+  font-family: var(--font-mono);
+}
+.markdown-body .titlebar-left,
+.markdown-body .titlebar-center,
+.markdown-body .titlebar-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  min-width: 0;
+}
+.markdown-body .titlebar-left   { justify-self: start; }
+.markdown-body .titlebar-center { justify-self: center; }
+.markdown-body .titlebar-right  { justify-self: end; }
+
+.markdown-body div.code-block-windowed.has-lang-color .code-block-titlebar {
+  background: color-mix(in srgb, var(--lang-color) 12%, var(--color-bg-alt));
+  border-bottom-color: color-mix(in srgb, var(--lang-color) 40%, var(--color-border));
+}
+
+/* --- macOS traffic lights --- */
+.markdown-body .traffic-lights {
+  display: inline-flex;
+  gap: 0.4em;
+  align-items: center;
+  margin-right: 0.25em;
+}
+.markdown-body .traffic-light {
+  width: 0.75em;
+  height: 0.75em;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.markdown-body .traffic-light.traffic-close    { background: #ff5f57; }
+.markdown-body .traffic-light.traffic-minimize { background: #febc2e; }
+.markdown-body .traffic-light.traffic-maximize { background: #28c840; }
+
+/* --- Language badge --- */
+.markdown-body .code-block-language {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-size: 0.75em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  padding: 0.15em 0.5em;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+.markdown-body div.code-block-windowed.has-lang-color .code-block-language:not(.icon-only) {
+  color: var(--lang-color);
+  border-color: color-mix(in srgb, var(--lang-color) 40%, var(--color-border));
+  background: color-mix(in srgb, var(--lang-color) 8%, var(--color-bg));
+}
+.markdown-body .code-block-language.icon-only {
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+.markdown-body .code-block-language-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.markdown-body .code-block-language.icon-only .code-block-language-icon {
+  width: 1.5em;
+  height: 1.5em;
+}
+.markdown-body .code-block-language-icon svg {
+  width: 100%;
+  height: 100%;
+}
+.markdown-body div.code-block-windowed.has-lang-color .code-block-language-icon {
+  color: var(--lang-color);
+}
+
+/* --- Filename --- */
+.markdown-body .code-block-filename {
+  color: var(--color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* --- Copy button --- */
+.markdown-body .code-block-copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75em;
+  height: 1.75em;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 150ms ease;
+  flex-shrink: 0;
+}
+.markdown-body .code-block-copy:hover {
+  background: color-mix(in srgb, var(--color-text) 8%, transparent);
+  color: var(--color-text);
+}
+.markdown-body .code-block-copy:active {
+  background: color-mix(in srgb, var(--color-text) 15%, transparent);
+  transform: scale(0.95);
+}
+.markdown-body .code-block-copy.copied {
+  color: hsl(150, 60%, 40%);
+}
+.markdown-body .code-block-copy svg {
+  fill: currentColor;
+}
+
+/* --- Reset inner containers inside windowed blocks --- */
+.markdown-body div.code-block-windowed .highlight {
+  margin: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.markdown-body div.code-block-windowed pre {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+}
+
+/* --- Lines (wrapped by JS when line numbers or highlights are enabled) --- */
+.markdown-body .code-line {
+  display: block;
+  min-height: 1.2em;
+  line-height: 1.5;
+}
+.markdown-body .code-line-content {
+  display: inline;
+}
+.markdown-body .code-line-content:empty::before {
+  content: ' ';
+}
+
+/* Line numbers — sticky to the left during horizontal scroll */
+.markdown-body .has-line-numbers .code-line {
+  display: flex;
+  gap: 1em;
+}
+.markdown-body .code-line-num {
+  flex-shrink: 0;
+  width: 2.5em;
+  text-align: right;
+  color: var(--color-text-muted);
+  opacity: 0.6;
+  user-select: none;
+  -webkit-user-select: none;
+  position: sticky;
+  left: 0;
+  background: var(--color-bg);
+  font-variant-numeric: tabular-nums;
+}
+.markdown-body .has-line-numbers .code-line-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Highlighted lines — accent border on the left, soft tinted background.
+   Uses --lang-color when available, otherwise a default amber. */
+.markdown-body .code-line-highlighted {
+  background: color-mix(in srgb, var(--lang-color, hsl(40, 90%, 50%)) 12%, transparent);
+  box-shadow: inset 3px 0 0 var(--lang-color, hsl(40, 90%, 50%));
+  margin: 0 -1em;
+  padding: 0 1em;
+}
+.markdown-body .has-line-numbers .code-line-highlighted .code-line-num {
+  background: color-mix(in srgb, var(--lang-color, hsl(40, 90%, 50%)) 12%, var(--color-bg));
+}
+
 
 /* -----------------------------------------------------------
    Tables
