@@ -138,6 +138,38 @@
 .markdown-body blockquote.warning { border-left-color: hsl(40,  90%, 50%); }
 .markdown-body blockquote.danger  { border-left-color: hsl(0,   75%, 55%); }
 
+/* Chirpy prompt styles (using IAL or GitHub alerts) */
+.markdown-body blockquote.prompt-note,
+.markdown-body blockquote.prompt-info {
+  border-left-color: hsl(220, 70%, 50%);
+  background: hsl(220, 70%, 96%);
+}
+
+.markdown-body blockquote.prompt-tip {
+  border-left-color: hsl(150, 60%, 45%);
+  background: hsl(150, 60%, 96%);
+}
+
+.markdown-body blockquote.prompt-warning {
+  border-left-color: hsl(40, 90%, 50%);
+  background: hsl(40, 90%, 96%);
+}
+
+.markdown-body blockquote.prompt-danger {
+  border-left-color: hsl(0, 75%, 55%);
+  background: hsl(0, 75%, 96%);
+}
+
+/* Chirpy theme prompt variants */
+.markdown-body blockquote.prompt-info,
+.markdown-body blockquote.prompt-note    { border-left-color: hsl(220, 70%, 50%); background: hsl(220, 70%, 95%); }
+
+.markdown-body blockquote.prompt-tip     { border-left-color: hsl(150, 60%, 45%); background: hsl(150, 60%, 95%); }
+
+.markdown-body blockquote.prompt-warning { border-left-color: hsl(40,  90%, 50%); background: hsl(40,  90%, 95%); }
+
+.markdown-body blockquote.prompt-danger  { border-left-color: hsl(0,   75%, 55%); background: hsl(0,   75%, 95%); }
+
 /* -----------------------------------------------------------
    Code
    ----------------------------------------------------------- */
