@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/markdown.css' | relative_url }}">
+
+  {% seo %}
+</head>
+<body>
+
+  <div class="backdrop" data-action="close-panels"></div>
+
+  {% include topbar.html %}
+
+  <aside id="site-panel" class="site-panel" aria-label="Site navigation">
+    {% include site-panel.html %}
+  </aside>
+
+  <aside id="toc-panel" class="toc-panel" aria-label="Table of contents">
+    {% include toc-panel.html %}
+  </aside>
+
+  <main id="main-content" class="main-content">
+    <article class="markdown-body">
+      {{ content }}
+    </article>
+  </main>
+
+  <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
+</body>
+</html>

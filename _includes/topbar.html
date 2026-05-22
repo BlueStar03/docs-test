@@ -1,0 +1,19 @@
+<header class="topbar">
+  <button type="button"
+          class="topbar-btn"
+          data-action="toggle-site-panel"
+          aria-label="Toggle site navigation"
+          aria-controls="site-panel">
+    <span class="topbar-icon">☰</span>
+  </button>
+
+  <a href="{{ '/' | relative_url }}" class="topbar-title">{{ site.title }}</a>
+
+  <button type="button"
+          class="topbar-btn"
+          data-action="toggle-toc-panel"
+          aria-label="Toggle table of contents"
+          aria-controls="toc-panel">
+    <span class="topbar-icon">📑</span>
+  </button>
+</header>

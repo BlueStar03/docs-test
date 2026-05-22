@@ -1,0 +1,51 @@
+# Site
+title: docs-test
+description: Markdown rendering testbed for a custom Jekyll theme
+author: zBuLe
+url: ""
+baseurl: ""
+
+# Build
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: highlight
+    span:
+      line_numbers: false
+    block:
+      line_numbers: false
+
+# Collections (uncomment when you start organizing docs)
+# collections:
+#   docs:
+#     output: true
+#     permalink: /:collection/:path/
+
+# Defaults — every page gets the default layout unless it sets one
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jemoji
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor/
+  - node_modules/
+  - .jekyll-cache/

@@ -1,0 +1,190 @@
+/* ===========================================================
+   Tokens
+   =========================================================== */
+:root {
+  --color-bg:         hsl(0, 0%, 100%);
+  --color-bg-alt:     hsl(0, 0%, 97%);
+  --color-text:       hsl(0, 0%, 13%);
+  --color-text-muted: hsl(0, 0%, 45%);
+  --color-accent:     hsl(220, 70%, 50%);
+  --color-border:     hsl(0, 0%, 88%);
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+
+  --topbar-height: 56px;
+  --panel-width:   280px;
+
+  --transition: 200ms ease;
+}
+
+/* ===========================================================
+   Reset
+   =========================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg { display: block; max-width: 100%; }
+input, button, textarea, select { font: inherit; color: inherit; }
+button { background: none; border: 0; cursor: pointer; }
+
+a { color: var(--color-accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ===========================================================
+   Topbar
+   =========================================================== */
+.topbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: var(--topbar-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 30;
+}
+
+.topbar-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: var(--color-text);
+}
+.topbar-btn:hover { background: var(--color-bg-alt); }
+
+.topbar-icon { font-size: 18px; line-height: 1; }
+
+.topbar-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+.topbar-title:hover { text-decoration: none; color: var(--color-accent); }
+
+/* ===========================================================
+   Panels
+   =========================================================== */
+.site-panel,
+.toc-panel {
+  position: fixed;
+  top: var(--topbar-height);
+  bottom: 0;
+  width: var(--panel-width);
+  background: var(--color-bg);
+  border: 0 solid var(--color-border);
+  overflow-y: auto;
+  z-index: 20;
+  transition: transform var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.site-panel {
+  left: 0;
+  border-right-width: 1px;
+  transform: translateX(-100%);
+}
+.toc-panel {
+  right: 0;
+  border-left-width: 1px;
+  transform: translateX(100%);
+}
+
+body.site-panel-open .site-panel { transform: translateX(0); }
+body.toc-panel-open  .toc-panel  { transform: translateX(0); }
+
+.panel-header {
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-muted);
+}
+
+.panel-nav {
+  flex: 1;
+  padding: 12px 0;
+  overflow-y: auto;
+}
+.panel-nav ul { list-style: none; }
+.panel-nav li > a,
+.panel-nav li > em {
+  display: block;
+  padding: 6px 20px;
+  color: var(--color-text);
+  font-size: 14px;
+  font-style: normal;
+}
+.panel-nav li > a:hover {
+  background: var(--color-bg-alt);
+  color: var(--color-accent);
+  text-decoration: none;
+}
+.panel-nav li > em { color: var(--color-text-muted); }
+
+.panel-footer {
+  padding: 12px 20px;
+  border-top: 1px solid var(--color-border);
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+/* ===========================================================
+   Main content
+   =========================================================== */
+.main-content {
+  margin-top: var(--topbar-height);
+  padding: 32px 24px;
+  transition: margin var(--transition);
+}
+
+.markdown-body {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+/* Desktop: panels push the content area when open */
+@media (min-width: 1024px) {
+  body.site-panel-open .main-content { margin-left: var(--panel-width); }
+  body.toc-panel-open  .main-content { margin-right: var(--panel-width); }
+}
+
+/* ===========================================================
+   Backdrop (mobile only, when a panel is open)
+   =========================================================== */
+.backdrop {
+  position: fixed;
+  inset: var(--topbar-height) 0 0 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition);
+  z-index: 15;
+}
+
+@media (max-width: 1023px) {
+  body.site-panel-open .backdrop,
+  body.toc-panel-open  .backdrop {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
