@@ -407,7 +407,7 @@ $$
 flowchart LR
     A[Start] --> B{Decision}
     B -->|Yes| C[Do the thing]
-    B -->|No|  D[Skip it]
+    B -->|No| D[Skip it]
     C --> E[End]
     D --> E
 ```

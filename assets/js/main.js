@@ -36,3 +36,39 @@
     else if (action === 'close-panels')      closePanels();
   });
 })();
+
+/* ===========================================================
+   KaTeX math rendering (auto-render extension)
+   =========================================================== */
+document.addEventListener('DOMContentLoaded', function () {
+  if (typeof renderMathInElement === 'undefined') return;
+  renderMathInElement(document.body, {
+    delimiters: [
+      { left: '$$', right: '$$', display: true },
+      { left: '$', right: '$', display: false },
+      { left: '\\[', right: '\\]', display: true },
+      { left: '\\(', right: '\\)', display: false }
+    ]
+  });
+});
+
+/* ===========================================================
+   Mermaid diagram rendering
+   =========================================================== */
+document.addEventListener('DOMContentLoaded', function () {
+  if (typeof mermaid === 'undefined') return;
+
+  // Convert kramdown output (<pre><code class="language-mermaid">)
+  // to Mermaid's expected format (<div class="mermaid">)
+  document.querySelectorAll('pre code.language-mermaid').forEach(function (codeBlock) {
+    var diagram = codeBlock.textContent.trim();
+    var div = document.createElement('div');
+    div.className = 'mermaid';
+    div.textContent = diagram;
+    codeBlock.parentElement.replaceWith(div);
+  });
+
+  // Initialize Mermaid
+  mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  mermaid.contentLoaded();
+});
