@@ -40,7 +40,12 @@
   </main>
 
   <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
-  <script src="{{ '/assets/js/optional-syntax.js' | relative_url }}"></script>
-  <script src="{{ '/assets/js/github-alerts.js' | relative_url }}"></script>
+
+  <!-- Admonitions config (from _data/admonitions.yml) -->
+  <script>
+    window.ADMONITIONS = {{ site.data.admonitions | jsonify }};
+  </script>
+  <script src="{{ '/assets/js/github-alerts.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/optional-syntax.js' | relative_url }}" defer></script>
 </body>
 </html>

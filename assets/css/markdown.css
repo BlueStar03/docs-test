@@ -132,43 +132,100 @@
 .markdown-body blockquote p { margin-bottom: 0.5em; }
 .markdown-body blockquote p:last-child { margin-bottom: 0; }
 
-/* Callout variants (use with kramdown's IAL: {:.note} after a blockquote) */
-.markdown-body blockquote.note    { border-left-color: hsl(220, 70%, 50%); }
-.markdown-body blockquote.tip     { border-left-color: hsl(150, 60%, 45%); }
-.markdown-body blockquote.warning { border-left-color: hsl(40,  90%, 50%); }
-.markdown-body blockquote.danger  { border-left-color: hsl(0,   75%, 55%); }
-
-/* Chirpy prompt styles (using IAL or GitHub alerts) */
-.markdown-body blockquote.prompt-note,
-.markdown-body blockquote.prompt-info {
-  border-left-color: hsl(220, 70%, 50%);
-  background: hsl(220, 70%, 96%);
+/* GitHub-style markdown alerts (converted from > [!TYPE] blockquotes)
+   Color is set per-instance via the --alert-color CSS variable,
+   driven by _data/admonitions.yml */
+.markdown-body .markdown-alert {
+  --alert-color: var(--color-text-muted);
+  padding: 0.75em 1em;
+  margin: 0 0 1em;
+  border-left: 4px solid var(--alert-color);
+  border-radius: 0 6px 6px 0;
+  background: color-mix(in srgb, var(--alert-color) 8%, transparent);
+}
+.markdown-body .markdown-alert > :last-child {
+  margin-bottom: 0;
+}
+.markdown-body .markdown-alert-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  color: var(--alert-color);
+}
+.markdown-body .markdown-alert-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.markdown-body .markdown-alert-icon svg {
+  fill: currentColor;
 }
 
-.markdown-body blockquote.prompt-tip {
-  border-left-color: hsl(150, 60%, 45%);
-  background: hsl(150, 60%, 96%);
+/* Collapsible variant — <details>/<summary> */
+.markdown-body details.markdown-alert > summary.markdown-alert-title {
+  cursor: pointer;
+  margin-bottom: 0;
+  list-style: none; /* hide default disclosure triangle */
+  user-select: none;
+}
+.markdown-body details.markdown-alert > summary.markdown-alert-title::-webkit-details-marker {
+  display: none; /* Safari */
+}
+/* Custom chevron that rotates when open */
+.markdown-body details.markdown-alert > summary.markdown-alert-title::after {
+  content: "";
+  margin-left: auto;
+  width: 0.6em;
+  height: 0.6em;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 200ms ease;
+}
+.markdown-body details.markdown-alert[open] > summary.markdown-alert-title {
+  margin-bottom: 0.5em;
+}
+.markdown-body details.markdown-alert[open] > summary.markdown-alert-title::after {
+  transform: rotate(45deg);
 }
 
-.markdown-body blockquote.prompt-warning {
-  border-left-color: hsl(40, 90%, 50%);
-  background: hsl(40, 90%, 96%);
+/* Chirpy-style prompts — IAL syntax {: .prompt-TYPE }
+   Icon goes inline at the start of the first paragraph (no title row).
+   Color comes from the same admonitions config via --alert-color. */
+.markdown-body blockquote[class*="prompt-"] {
+  --alert-color: var(--color-text-muted);
+  border-left-color: var(--alert-color);
+  background: color-mix(in srgb, var(--alert-color) 8%, transparent);
+  color: var(--color-text);
+}
+.markdown-body blockquote[class*="prompt-"] .prompt-icon {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 0.5em;
+  color: var(--alert-color);
+  vertical-align: middle;
+}
+.markdown-body blockquote[class*="prompt-"] .prompt-icon svg {
+  fill: currentColor;
 }
 
-.markdown-body blockquote.prompt-danger {
-  border-left-color: hsl(0, 75%, 55%);
-  background: hsl(0, 75%, 96%);
+/* Nested plain blockquotes inside an admonition inherit the parent's color.
+   Nested [!TYPE] alerts override this with their own --alert-color. */
+.markdown-body .markdown-alert blockquote,
+.markdown-body blockquote[class*="prompt-"] blockquote {
+  border-left-color: var(--alert-color);
+  background: color-mix(in srgb, var(--alert-color) 12%, transparent);
+  color: var(--color-text);
 }
 
-/* Chirpy theme prompt variants */
-.markdown-body blockquote.prompt-info,
-.markdown-body blockquote.prompt-note    { border-left-color: hsl(220, 70%, 50%); background: hsl(220, 70%, 95%); }
-
-.markdown-body blockquote.prompt-tip     { border-left-color: hsl(150, 60%, 45%); background: hsl(150, 60%, 95%); }
-
-.markdown-body blockquote.prompt-warning { border-left-color: hsl(40,  90%, 50%); background: hsl(40,  90%, 95%); }
-
-.markdown-body blockquote.prompt-danger  { border-left-color: hsl(0,   75%, 55%); background: hsl(0,   75%, 95%); }
+/* Inline code inside admonitions picks up the parent's --alert-color */
+.markdown-body .markdown-alert :not(pre) > code,
+.markdown-body blockquote[class*="prompt-"] :not(pre) > code {
+  background: color-mix(in srgb, var(--alert-color) 18%, transparent);
+  color: var(--color-text);
+}
 
 /* -----------------------------------------------------------
    Code

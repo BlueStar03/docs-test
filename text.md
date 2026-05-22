@@ -118,16 +118,24 @@ Moon
 > [!CAUTION]
 > Advises about risks or negative outcomes of certain actions.
 
-> [!bug]
+> [!bug]+
 > this is a bug
 
-> [!note] Title
+> [!note]- Title
 > this is a note
 {: .prompt-tip }
 
 > [!note] Title {: .expand }
 > this is a note
 
+> [!CUSTOM]
+> Custom admonitions work now.
+
+> [!BUG]
+> Found a bug here.
+
+> [!SUCCESS] Custom Title Override
+> With a custom title.
 
 
 ## Tables

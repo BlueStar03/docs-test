@@ -509,4 +509,150 @@ In a code span, no characters need escaping: `*not italic*`, `[not a link](url)`
 
 ---
 
+### Alerts
+
+> [!note]
+> Useful information that users should know, even when skimming content.
+
+> [!TIP]
+> Helpful advice for doing things better or more easily.
+
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
+
+> [!WARNING]
+> Urgent info that needs immediate user attention to avoid problems.
+
+> [!CAUTION]
+> Advises about risks or negative outcomes of certain actions.
+
+> [!bug]+
+> this is a bug
+
+> [!note]- Title
+> this is a note
+{: .prompt-tip }
+
+> [!note] Title {: .expand }
+> this is a note
+
+> [!CUSTOM]
+> Custom admonitions work now.
+
+> [!BUG]
+> Found a bug here.
+
+> [!SUCCESS] Custom Title Override
+> With a custom title.
+
+> [!QUESTION]+ What is it ?
+> the question
+
+> and the answer is friendship
+{: .prompt-question}
+
+> Warning  
+> An example showing the `warning` type prompt.  
+> very warning
+> 
+>> beware !  
+>
+> Greatest caution
+{: .prompt-warning }
+
+> [!WARNING] 
+> An example showing the `warning` type prompt.  
+> very warning
+> 
+>> beware !  
+>
+> Greatest caution
+
+> [!WARNING] 
+> An example showing the `warning` type prompt.  
+> very warning
+> 
+>> beware !  
+>
+> Greatest caution
+{: .prompt-warning }
+
+
+> and the answer is friendship
+{: .prompt-question}
+---
+
+## Test
+
+> Warning  
+> An example showing the `warning` type prompt.  
+> very warning
+> 
+>> beware !  `warning`
+>
+> Greatest caution
+{: .prompt-warning }
+
+> [!WARNING]  
+> An example showing the `warning` type prompt.  
+> very warning
+> 
+>> beware !  
+>
+> Greatest caution
+
+> [!WARNING]  
+> An example showing the `warning` type prompt.  
+> very warning
+> 
+>> beware !  
+>
+> Greatest caution
+{: .prompt-warning }
+
+> [!WARNING]  
+> An example showing the `warning` type prompt.  
+> very warning
+>
+>> [!QUESTION]
+>> beware !  
+>
+> Greatest caution
+
+> [!WARNING]  
+> An example showing the `warning` type prompt.  
+> very warning
+>
+>> beware !  
+>
+> Greatest caution
+{: .prompt-question }
+
+> [!WARNING]  
+> An example showing the `warning` type prompt.  
+> very warning
+>
+>
+>> beware !        {: .prompt-question }
+>
+> Greatest caution
+
+> [!WARNING] A great warning
+
+> [!WARNING]  
+> An example showing the `warning` type prompt.  
+> very warning
+>
+>> [!WARNING]  beware !  
+>
+> Greatest caution
+
+> [!WARNING]  
+> An example showing the `warning` type prompt.  
+> very warning
+>
+>> [!QUESTION]  beware !  
+>
+> Greatest caution
+
 *End of document.*
