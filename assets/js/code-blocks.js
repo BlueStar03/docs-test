@@ -51,6 +51,20 @@
     return !!defaults.line_numbers;
   }
 
+  function getZebra(div, defaults) {
+    var s = attr(div, 'zebra');
+    if (s === 'true')  return true;
+    if (s === 'false') return false;
+    return !!defaults.zebra;
+  }
+
+  function getZebra(div, defaults) {
+    var s = attr(div, 'zebra');
+    if (s === 'true')  return true;
+    if (s === 'false') return false;
+    return !!defaults.zebra;
+  }
+
   // Parse "3,5-7,10" → [3, 5, 6, 7, 10]
   function parseHighlightRanges(str) {
     if (!str) return [];
@@ -149,14 +163,77 @@
     return bar;
   }
 
+  // Split HTML on newlines while preserving tag nesting.
+  // Rouge sometimes embeds newlines inside <span> tokens (e.g. whitespace
+  // spans in JSON, multi-line keyword spans in Bash). A naive split on
+  // '\n' produces malformed HTML and visually merges lines. This walker
+  // tracks open tags and closes/reopens them across line boundaries so
+  // every line is well-formed.
+  function smartSplitLines(html) {
+    var lines = [];
+    var current = '';
+    var stack = []; // array of opening tag strings
+    var i = 0, len = html.length;
+
+    function closeOpenTags() {
+      var out = '';
+      for (var j = stack.length - 1; j >= 0; j--) {
+        var nameMatch = stack[j].match(/^<(\w+)/);
+        out += '</' + (nameMatch ? nameMatch[1] : 'span') + '>';
+      }
+      return out;
+    }
+
+    function reopenTags() {
+      return stack.join('');
+    }
+
+    while (i < len) {
+      var ch = html.charAt(i);
+
+      if (ch === '<') {
+        var end = html.indexOf('>', i);
+        if (end < 0) {
+          current += html.substring(i);
+          break;
+        }
+        var tag = html.substring(i, end + 1);
+        current += tag;
+
+        if (tag.charAt(1) === '/') {
+          stack.pop();
+        } else if (tag.charAt(tag.length - 2) !== '/') {
+          // Opening tag (not self-closing)
+          stack.push(tag);
+        }
+        i = end + 1;
+      } else if (ch === '\n') {
+        current += closeOpenTags();
+        lines.push(current);
+        current = reopenTags();
+        i++;
+      } else {
+        current += ch;
+        i++;
+      }
+    }
+
+    // Final line — close any remaining open tags for safety
+    if (current.length > 0 || lines.length === 0) {
+      current += closeOpenTags();
+      lines.push(current);
+    }
+    return lines;
+  }
+
   // Wrap each line of code in a span; optionally add line numbers and highlights.
-  function processLines(codeEl, lineNumbers, highlightLines) {
-    if (!lineNumbers && (!highlightLines || !highlightLines.length)) return;
+  function processLines(codeEl, lineNumbers, highlightLines, zebra) {
+    if (!lineNumbers && !zebra && (!highlightLines || !highlightLines.length)) return;
 
     var html = codeEl.innerHTML;
     if (html.charAt(html.length - 1) === '\n') html = html.slice(0, -1);
 
-    var lines = html.split('\n');
+    var lines = smartSplitLines(html);
     var hl = highlightLines || [];
     var out = lines.map(function (line, idx) {
       var lineNum = idx + 1;
@@ -232,6 +309,7 @@
       var filename     = attr(div, 'file');
       var windowStyle  = getWindowStyle(div, defaults);
       var lineNumbers  = getLineNumbers(div, defaults);
+      var zebra        = getZebra(div, defaults);
       var highlights   = parseHighlightRanges(attr(div, 'highlight'));
       var langConfig   = language ? languages[language.toLowerCase()] : null;
 
@@ -246,10 +324,11 @@
       div.insertBefore(titleBar, div.firstChild);
       div.classList.add('code-block-windowed', 'style-' + windowStyle);
 
-      // Line processing (wraps lines for numbering and highlighting)
-      processLines(codeEl, lineNumbers, highlights);
-      if (lineNumbers) div.classList.add('has-line-numbers');
+      // Line processing (wraps lines for numbering, highlighting, and zebra)
+      processLines(codeEl, lineNumbers, highlights, zebra);
+      if (lineNumbers)      div.classList.add('has-line-numbers');
       if (highlights.length) div.classList.add('has-highlights');
+      if (zebra)            div.classList.add('has-zebra');
 
       // Copy
       var copyBtn = titleBar.querySelector('.code-block-copy');

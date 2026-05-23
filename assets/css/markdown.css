@@ -482,8 +482,21 @@
   min-width: 0;
 }
 
+/* Zebra striping — alternating row backgrounds.
+   Uses --lang-color when defined (tinted with the language theme),
+   otherwise a subtle neutral gray. */
+.markdown-body .has-zebra .code-line:nth-child(even) {
+  background: color-mix(in srgb, var(--lang-color, var(--color-text-muted)) 15%, transparent);
+    margin: 0 -1em;
+  padding: 0 1em;
+}
+.markdown-body .has-zebra.has-line-numbers .code-line:nth-child(even) .code-line-num {
+  background: color-mix(in srgb, var(--lang-color, var(--color-text-muted)) 15%, var(--color-bg));
+}
+
 /* Highlighted lines — accent border on the left, soft tinted background.
-   Uses --lang-color when available, otherwise a default amber. */
+   Uses --lang-color when available, otherwise a default amber.
+   Placed AFTER zebra to override the alternating background. */
 .markdown-body .code-line-highlighted {
   background: color-mix(in srgb, var(--lang-color, hsl(40, 90%, 50%)) 12%, transparent);
   box-shadow: inset 3px 0 0 var(--lang-color, hsl(40, 90%, 50%));

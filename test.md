@@ -201,3 +201,20 @@ console.log(`Random animal: ${pick}`);
 ```
 {: file='example.js' window='linux' numbers='true' }
 ---
+
+```javascript
+const animals = ["fox", "owl", "otter", "lynx"];
+const pick = animals[Math.floor(Math.random() * animals.length)];
+
+console.log(`Random animal: ${pick}`);
+```
+{: file='example.js' zebra='true' window='linux' numbers='true' }
+
+```python
+def random_pick(items):
+    import random
+    return random.choice(items)
+
+print(random_pick(["fox", "owl", "otter"]))
+```
+{: file='example.py' window='macos' numbers='true' zebra='true' highlight='3' }

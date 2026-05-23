@@ -685,6 +685,95 @@ In a code span, no characters need escaping: `*not italic*`, `[not a link](url)`
 | `PUT`       | :material-check-all: Update resource |
 | `DELETE`    | :material-close:     Delete resource |
 
+---
+
+
+```javascript
+const x = 1;
+const y = 2;
+const z = 3;
+const w = 4;
+```
+{: highlight='2,4' file='example.js' window='linux'}
+
+```javascript
+const animals = ["fox", "owl", "otter", "lynx"];
+const pick = animals[Math.floor(Math.random() * animals.length)];
+
+console.log(`Random animal: ${pick}`);
+```
+{: file='example.js' window='macos' numbers='true' highlight='1,4' }
+
+
+```javascript
+const animals = ["fox", "owl", "otter", "lynx"];
+const pick = animals[Math.floor(Math.random() * animals.length)];
+
+console.log(`Random animal: ${pick}`);
+```
+{: file='example.js' zebra='true' numbers='true' }
+
+
+```python
+def random_pick(items):
+    import random
+    return random.choice(items)
+
+print(random_pick(["fox", "owl", "otter"]))
+```
+{: file='example.py' window='linux' numbers='true' zebra='true' highlight='3' }
+
+---
+
+```javascript
+function rollDie(sides = 6) {
+  return Math.floor(Math.random() * sides) + 1;
+}
+
+console.log(`You rolled a ${rollDie(20)}.`);
+```
+{: file='dice.js' window='linux' numbers='true' zebra='true' highlight='2' }
+
+```ruby
+def title_case(text)
+  text.split.map(&:capitalize).join(" ")
+end
+
+puts title_case("the quiet forest path")
+```
+{: file='title_case.rb' window='macos' numbers='true' zebra='true' highlight='2' }
+
+```css
+.card {
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, white 92%, cornflowerblue);
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 12%);
+}
+```
+{: file='card.css' window='windows' numbers='true' zebra='true' highlight='4' }
+
+```sql
+SELECT name, score
+FROM players
+WHERE score >= 1000
+ORDER BY score DESC
+LIMIT 5;
+```
+{: file='leaderboard.sql' window='linux' numbers='true' zebra='true' highlight='3' }
+
+```gml
+var move_x = keyboard_check(ord("D")) - keyboard_check(ord("A"));
+var move_y = keyboard_check(ord("S")) - keyboard_check(ord("W"));
+
+x += move_x * 4;
+y += move_y * 4;
+```
+{: file='obj_player_step.gml' window='windows' numbers='true' zebra='true' highlight='4-5' }
+
+
+---
+
 *End of document.*
 
 <ul>

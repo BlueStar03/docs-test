@@ -53,3 +53,4 @@ exclude:
 code_blocks:
   window_style: macos    # windows | macos | linux
   line_numbers: true    # default for all blocks
+  zebra: true

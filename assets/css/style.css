@@ -1,21 +1,45 @@
 /* ===========================================================
    Tokens
+
+   The theme is built from THREE base tokens that flow into derived
+   ones via color-mix(). To re-theme the site, override only the
+   base tokens. To add a new theme (light/dark/etc), override only
+   the base tokens within a [data-theme="..."] block.
    =========================================================== */
 :root {
-  --color-bg:         hsl(0, 0%, 100%);
-  --color-bg-alt:     hsl(0, 0%, 97%);
-  --color-text:       hsl(0, 0%, 13%);
-  --color-text-muted: hsl(0, 0%, 45%);
-  --color-accent:     hsl(220, 70%, 50%);
-  --color-border:     hsl(0, 0%, 88%);
+  /* === Base tokens — the only ones to override per theme === */
+  --color-bg:     hsl(0, 0%, 100%);
+  --color-text:   hsl(0, 0%, 13%);
+  --color-accent: hsl(220, 70%, 50%);
 
+  /* === Derived tokens — cascade from the three above === */
+  --color-bg-alt:     color-mix(in srgb, var(--color-text)  5%, var(--color-bg));
+  --color-text-muted: color-mix(in srgb, var(--color-text) 55%, var(--color-bg));
+  --color-border:     color-mix(in srgb, var(--color-text) 15%, var(--color-bg));
+
+  /* === Type === */
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 
+  /* === Layout === */
   --topbar-height: 56px;
   --panel-width:   280px;
 
+  /* === Motion === */
   --transition: 200ms ease;
+}
+
+/* Dark theme — override only the three base tokens.
+   Derived tokens (bg-alt, text-muted, border) recompute automatically. */
+[data-theme="dark"] {
+  --color-bg:     hsl(220, 13%, 9%);
+  --color-text:   hsl(0, 0%, 92%);
+  --color-accent: hsl(220, 80%, 65%);
+}
+
+/* Smooth color transitions when switching themes */
+html {
+  transition: background-color var(--transition), color var(--transition);
 }
 
 /* ===========================================================
@@ -70,6 +94,15 @@ a:hover { text-decoration: underline; }
 .topbar-btn:hover { background: var(--color-bg-alt); }
 
 .topbar-icon { font-size: 18px; line-height: 1; }
+
+/* Theme toggle — three icons, one shown at a time based on preference */
+.topbar-theme-toggle .theme-icon {
+  fill: currentColor;
+  display: none;
+}
+[data-theme-pref="auto"]  .topbar-theme-toggle .theme-icon-auto  { display: block; }
+[data-theme-pref="light"] .topbar-theme-toggle .theme-icon-light { display: block; }
+[data-theme-pref="dark"]  .topbar-theme-toggle .theme-icon-dark  { display: block; }
 
 .topbar-title {
   font-size: 16px;

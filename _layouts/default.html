@@ -6,6 +6,16 @@
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
   <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
 
+  <!-- Apply theme BEFORE any rendering to avoid flash -->
+  <script>
+    (function () {
+      var pref = localStorage.getItem('theme-preference');
+      var theme = pref || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.setAttribute('data-theme-pref', pref || 'auto');
+    })();
+  </script>
+
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/markdown.css' | relative_url }}">
 
@@ -40,6 +50,7 @@
   </main>
 
   <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/theme.js' | relative_url }}" defer></script>
 
   <!-- Admonitions config (from _data/admonitions.yml) -->
   <script>
@@ -50,6 +61,7 @@
   <!-- Languages config (from _data/languages.yml) -->
   <script>
     window.LANGUAGES = {{ site.data.languages | jsonify }};
+    window.CODE_BLOCKS = {{ site.code_blocks | jsonify }};
   </script>
   <script src="{{ '/assets/js/code-blocks.js' | relative_url }}" defer></script>
   <script src="{{ '/assets/js/optional-syntax.js' | relative_url }}" defer></script>

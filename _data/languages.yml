@@ -1,104 +1,124 @@
 # Language configuration for code block title bars
-# Each key matches the kramdown/rouge language identifier (lowercase)
-# - icon: emoji or SVG markup (innerHTML) — appears before the language label
-# - color: CSS color value (hex, rgb, hsl, named) — tints the language badge
+# Each key matches the kramdown/rouge language identifier lowercase.
+# - icon: emoji, SVG, or HTML markup inserted with innerHTML.
+# - color: CSS color value used to tint the language badge.
 #
-# Either or both can be defined. Missing entries use the default
-# (muted gray text badge, no icon).
+# Missing entries use the default badge.
 
-javascript:
-  icon: '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M100 0.000488281H0V100H100V0.000488281Z" fill="#F7DF1E"/><path d="M67.1745 78.1259C69.1888 81.4148 71.8094 83.8323 76.4444 83.8323C80.338 83.8323 82.8253 81.8862 82.8253 79.1973C82.8253 75.9751 80.2698 74.8339 75.9841 72.9592L73.6348 71.9513C66.8539 69.0624 62.3491 65.4434 62.3491 57.7926C62.3491 50.745 67.719 45.3799 76.111 45.3799C82.0856 45.3799 86.3809 47.4592 89.4761 52.9037L82.1586 57.6021C80.5475 54.7132 78.8094 53.5751 76.111 53.5751C73.3587 53.5751 71.6142 55.3212 71.6142 57.6021C71.6142 60.4212 73.3602 61.5624 77.392 63.3085L79.7412 64.3148C87.7253 67.7386 92.2333 71.2291 92.2333 79.0767C92.2333 87.537 85.5872 92.1719 76.6618 92.1719C67.9348 92.1719 62.2967 88.0132 59.538 82.5624L67.1745 78.1259ZM33.9793 78.9402C35.4555 81.5592 36.7983 83.7735 40.0269 83.7735C43.1142 83.7735 45.0618 82.5656 45.0618 77.8688V45.9164H54.4586V77.9958C54.4586 87.7259 48.7539 92.1545 40.4269 92.1545C32.9031 92.1545 28.546 88.2608 26.3301 83.5712L33.9793 78.9402Z" fill="black"/></svg>'
+javascript: &javascript
+  icon: '<img alt="JavaScript" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" width="16" height="16">'
   color: "#f7df1e"
 js:
-  icon: '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M100 0.000488281H0V100H100V0.000488281Z" fill="#F7DF1E"/><path d="M67.1745 78.1259C69.1888 81.4148 71.8094 83.8323 76.4444 83.8323C80.338 83.8323 82.8253 81.8862 82.8253 79.1973C82.8253 75.9751 80.2698 74.8339 75.9841 72.9592L73.6348 71.9513C66.8539 69.0624 62.3491 65.4434 62.3491 57.7926C62.3491 50.745 67.719 45.3799 76.111 45.3799C82.0856 45.3799 86.3809 47.4592 89.4761 52.9037L82.1586 57.6021C80.5475 54.7132 78.8094 53.5751 76.111 53.5751C73.3587 53.5751 71.6142 55.3212 71.6142 57.6021C71.6142 60.4212 73.3602 61.5624 77.392 63.3085L79.7412 64.3148C87.7253 67.7386 92.2333 71.2291 92.2333 79.0767C92.2333 87.537 85.5872 92.1719 76.6618 92.1719C67.9348 92.1719 62.2967 88.0132 59.538 82.5624L67.1745 78.1259ZM33.9793 78.9402C35.4555 81.5592 36.7983 83.7735 40.0269 83.7735C43.1142 83.7735 45.0618 82.5656 45.0618 77.8688V45.9164H54.4586V77.9958C54.4586 87.7259 48.7539 92.1545 40.4269 92.1545C32.9031 92.1545 28.546 88.2608 26.3301 83.5712L33.9793 78.9402Z" fill="black"/></svg>'
-  color: "#f7df1e"
+  <<: *javascript
 
-typescript:
+typescript: &typescript
+  icon: '<img alt="TypeScript" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16" height="16">'
   color: "#3178c6"
 ts:
-  color: "#3178c6"
+  <<: *typescript
 
-python:
+python: &python
+  icon: '<img alt="Python" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" width="16" height="16">'
   color: "#3776ab"
 py:
-  color: "#3776ab"
+  <<: *python
 
-ruby:
+ruby: &ruby
+  icon: '<img alt="Ruby" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ruby/ruby-original.svg" width="16" height="16">'
   color: "#cc342d"
 rb:
-  color: "#cc342d"
+  <<: *ruby
 
-rust:
+rust: &rust
+  icon: '<img alt="Rust" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rust/rust-original.svg" width="16" height="16">'
   color: "#dea584"
 rs:
-  color: "#dea584"
+  <<: *rust
 
 go:
+  icon: '<img alt="Go" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/go/go-original.svg" width="16" height="16">'
   color: "#00add8"
 
 java:
-  color: "#b07219"
+  icon: '<img alt="Java" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" width="16" height="16">'
+  color: "#f89820"
 
 c:
-  color: "#555555"
+  icon: '<img alt="C" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg" width="16" height="16">'
+  color: "#a8b9cc"
 
 cpp:
-  color: "#f34b7d"
+  icon: '<img alt="C++" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" width="16" height="16">'
+  color: "#00599c"
 
-csharp:
-  color: "#178600"
+csharp: &csharp
+  icon: '<img alt="C#" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" width="16" height="16">'
+  color: "#512bd4"
 cs:
-  color: "#178600"
+  <<: *csharp
 
 php:
-  color: "#4f5d95"
+  icon: '<img alt="PHP" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" width="16" height="16">'
+  color: "#777bb4"
 
 swift:
+  icon: '<img alt="Swift" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/swift/swift-original.svg" width="16" height="16">'
   color: "#fa7343"
 
 kotlin:
-  color: "#a97bff"
+  icon: '<img alt="Kotlin" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kotlin/kotlin-original.svg" width="16" height="16">'
+  color: "#7f52ff"
 
 html:
-  color: "#e34c26"
+  icon: '<img alt="HTML" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" width="16" height="16">'
+  color: "#e34f26"
 
 css:
-  color: "#563d7c"
+  icon: '<img alt="CSS" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" width="16" height="16">'
+  color: "#1572b6"
 
-scss:
-  color: "#c6538c"
-
+scss: &sass
+  icon: '<img alt="Sass" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sass/sass-original.svg" width="16" height="16">'
+  color: "#cc6699"
 sass:
-  color: "#cf649a"
+  <<: *sass
 
-yaml:
+yaml: &yaml
+  icon: '<svg viewBox="0 0 100 100" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="18" fill="#cb171e"/><text x="50" y="61" text-anchor="middle" font-size="38" font-family="Arial, sans-serif" font-weight="700" fill="white">Y</text></svg>'
   color: "#cb171e"
 yml:
-  color: "#cb171e"
+  <<: *yaml
 
 json:
+  icon: '<svg viewBox="0 0 100 100" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="18" fill="#292929"/><text x="50" y="60" text-anchor="middle" font-size="34" font-family="Arial, sans-serif" font-weight="700" fill="#f5df4d">{ }</text></svg>'
   color: "#292929"
 
 toml:
+  icon: '<svg viewBox="0 0 100 100" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="18" fill="#9c4221"/><text x="50" y="61" text-anchor="middle" font-size="34" font-family="Arial, sans-serif" font-weight="700" fill="white">T</text></svg>'
   color: "#9c4221"
 
-bash:
+bash: &bash
+  icon: '<img alt="Bash" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-original.svg" width="16" height="16">'
   color: "#4eaa25"
 sh:
-  color: "#4eaa25"
+  <<: *bash
 shell:
-  color: "#89e051"
+  <<: *bash
 
-markdown:
+markdown: &markdown
+  icon: '<img alt="Markdown" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/markdown/markdown-original.svg" width="16" height="16">'
   color: "#083fa1"
 md:
-  color: "#083fa1"
+  <<: *markdown
 
 sql:
+  icon: '<svg viewBox="0 0 100 100" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="22" rx="32" ry="14" fill="#f59e0b"/><path d="M18 22v46c0 8 14 14 32 14s32-6 32-14V22c0 8-14 14-32 14s-32-6-32-14z" fill="#e38c00"/><ellipse cx="50" cy="68" rx="32" ry="14" fill="#ffb020"/><text x="50" y="64" text-anchor="middle" font-size="22" font-family="Arial, sans-serif" font-weight="700" fill="#3b2500">SQL</text></svg>'
   color: "#e38c00"
 
 gml:
+  icon: '<svg viewBox="0 0 100 100" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="18" fill="#8b5cf6"/><text x="50" y="60" text-anchor="middle" font-size="26" font-family="Arial, sans-serif" font-weight="700" fill="white">GML</text></svg>'
   color: "#8b5cf6"
 
 gdscript:
-  color: "#4778a5"
+  icon: '<img alt="GDScript" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/godot/godot-original.svg" width="16" height="16">'
+  color: "#478cbf"
