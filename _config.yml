@@ -54,3 +54,8 @@ code_blocks:
   window_style: macos    # windows | macos | linux
   line_numbers: true    # default for all blocks
   zebra: true
+
+toc:
+  enabled: true
+  min_level: 2
+  max_level: 3

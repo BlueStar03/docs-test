@@ -1,64 +1,44 @@
 /* ===========================================================
    Theme Toggle
 
-   Three states: auto / light / dark
-   - auto:  follow system preference
-   - light: explicit light mode
-   - dark:  explicit dark mode
+   Two states: light / dark
+   - First visit (no stored preference): follows system preference
+   - Once user clicks: their explicit choice is remembered
 
-   Initial theme is applied inline in <head> (see default.html)
+   The initial theme is applied inline in <head> (see default.html)
    to prevent flash. This script handles:
-   - Click cycling through states
-   - System theme changes (when in auto mode)
-   - Updating the toggle button's data-attribute for icon swap
+   - Click toggling between light and dark
+   - System theme changes (only if user has no explicit preference)
    =========================================================== */
 
 (function () {
   'use strict';
 
   var STORAGE_KEY = 'theme-preference';
-  var STATES = ['auto', 'light', 'dark'];
   var html = document.documentElement;
   var mql = window.matchMedia('(prefers-color-scheme: dark)');
 
-  function getPreference() {
-    return localStorage.getItem(STORAGE_KEY) || 'auto';
+  function applyTheme(theme) {
+    html.setAttribute('data-theme', theme);
   }
 
-  function setPreference(pref) {
-    if (pref === 'auto') {
-      localStorage.removeItem(STORAGE_KEY);
-    } else {
-      localStorage.setItem(STORAGE_KEY, pref);
-    }
-  }
-
-  function effectiveTheme(pref) {
-    if (pref === 'auto') return mql.matches ? 'dark' : 'light';
-    return pref;
-  }
-
-  function applyTheme(pref) {
-    html.setAttribute('data-theme', effectiveTheme(pref));
-    html.setAttribute('data-theme-pref', pref);
-  }
-
-  function cycle() {
-    var current = getPreference();
-    var idx = STATES.indexOf(current);
-    var next = STATES[(idx + 1) % STATES.length];
-    setPreference(next);
+  function toggle() {
+    var current = html.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    localStorage.setItem(STORAGE_KEY, next);
     applyTheme(next);
   }
 
-  // Click handler — toggle button uses data-action="toggle-theme"
+  // Click handler
   document.addEventListener('click', function (e) {
     var btn = e.target.closest('[data-action="toggle-theme"]');
-    if (btn) cycle();
+    if (btn) toggle();
   });
 
-  // React to system theme changes when in auto mode
+  // React to system theme changes — only if no explicit preference set
   mql.addEventListener('change', function () {
-    if (getPreference() === 'auto') applyTheme('auto');
+    if (!localStorage.getItem(STORAGE_KEY)) {
+      applyTheme(mql.matches ? 'dark' : 'light');
+    }
   });
 })();

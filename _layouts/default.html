@@ -12,7 +12,6 @@
       var pref = localStorage.getItem('theme-preference');
       var theme = pref || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', theme);
-      document.documentElement.setAttribute('data-theme-pref', pref || 'auto');
     })();
   </script>
 
@@ -51,6 +50,17 @@
 
   <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
   <script src="{{ '/assets/js/theme.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/site-nav.js' | relative_url }}" defer></script>
+
+  <!-- TOC config (frontmatter overrides _config.yml; both optional) -->
+  <script>
+    window.TOC = {
+      enabled: {% if page.toc == false %}false{% elsif page.toc == true %}true{% elsif site.toc.enabled == false %}false{% else %}true{% endif %},
+      minLevel: {{ page.toc_min_level | default: site.toc.min_level | default: 2 }},
+      maxLevel: {{ page.toc_max_level | default: site.toc.max_level | default: 3 }}
+    };
+  </script>
+  <script src="{{ '/assets/js/toc.js' | relative_url }}" defer></script>
 
   <!-- Admonitions config (from _data/admonitions.yml) -->
   <script>

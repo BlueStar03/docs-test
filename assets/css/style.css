@@ -95,14 +95,13 @@ a:hover { text-decoration: underline; }
 
 .topbar-icon { font-size: 18px; line-height: 1; }
 
-/* Theme toggle — three icons, one shown at a time based on preference */
+/* Theme toggle — sun in light mode, moon in dark mode */
 .topbar-theme-toggle .theme-icon {
   fill: currentColor;
   display: none;
 }
-[data-theme-pref="auto"]  .topbar-theme-toggle .theme-icon-auto  { display: block; }
-[data-theme-pref="light"] .topbar-theme-toggle .theme-icon-light { display: block; }
-[data-theme-pref="dark"]  .topbar-theme-toggle .theme-icon-dark  { display: block; }
+[data-theme="light"] .topbar-theme-toggle .theme-icon-light { display: block; }
+[data-theme="dark"]  .topbar-theme-toggle .theme-icon-dark  { display: block; }
 
 .topbar-title {
   font-size: 16px;
@@ -173,6 +172,40 @@ body.toc-panel-open  .toc-panel  { transform: translateX(0); }
   text-decoration: none;
 }
 .panel-nav li > em { color: var(--color-text-muted); }
+
+/* ===========================================================
+   TOC (Table of Contents) — generated into #toc-panel by toc.js
+   =========================================================== */
+.panel-nav .toc-list {
+  list-style: none;
+  padding: 8px 0;
+}
+.panel-nav .toc-item > a {
+  display: block;
+  padding: 5px 20px 5px 17px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+  line-height: 1.4;
+  border-left: 3px solid transparent;
+  transition: color 120ms ease, border-color 120ms ease, background 120ms ease;
+}
+.panel-nav .toc-item > a:hover {
+  color: var(--color-text);
+  text-decoration: none;
+  background: var(--color-bg-alt);
+}
+.panel-nav .toc-item.toc-active > a {
+  color: var(--color-accent);
+  border-left-color: var(--color-accent);
+  font-weight: 500;
+}
+
+/* Indentation by heading depth */
+.panel-nav .toc-item.toc-depth-0 > a { padding-left: 17px; }
+.panel-nav .toc-item.toc-depth-1 > a { padding-left: 33px; }
+.panel-nav .toc-item.toc-depth-2 > a { padding-left: 49px; }
+.panel-nav .toc-item.toc-depth-3 > a { padding-left: 65px; }
+.panel-nav .toc-item.toc-depth-4 > a { padding-left: 81px; }
 
 .panel-footer {
   padding: 12px 20px;

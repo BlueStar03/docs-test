@@ -527,7 +527,7 @@ In a code span, no characters need escaping: `*not italic*`, `[not a link](url)`
 
 ---
 
-### Alerts
+## 19. Alerts
 
 > [!note]
 > Useful information that users should know, even when skimming content.
@@ -600,7 +600,7 @@ In a code span, no characters need escaping: `*not italic*`, `[not a link](url)`
 {: .prompt-question}
 ---
 
-## Test
+## 20. Test
 
 > Warning  
 > An example showing the `warning` type prompt.  
@@ -677,7 +677,7 @@ In a code span, no characters need escaping: `*not italic*`, `[not a link](url)`
 
 ---
 
-## Table test
+## 21. Table test
 
 | Method      | Description                          |
 | :---------- | :----------------------------------- |
@@ -687,6 +687,7 @@ In a code span, no characters need escaping: `*not italic*`, `[not a link](url)`
 
 ---
 
+## 23. CodeBlocks
 
 ```javascript
 const x = 1;
