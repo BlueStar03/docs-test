@@ -5,6 +5,17 @@ author: zBuLe
 url: ""
 baseurl: "/docs-test"
 
+# Optional: site logo shown as the topbar nav-toggle button and in the
+# site-panel header. Path relative to site root. Falls back to a
+# hamburger icon when unset.
+# logo: /assets/images/logo.svg
+logo: logo.svg
+
+# Optional: override theme toggle icons. Accepts emoji or any HTML
+# (e.g. an inline <svg>). Falls back to the built-in SVG sun/moon.
+# theme_icon_light: "☀️"
+# theme_icon_dark:  "🌙"
+
 # Build
 markdown: kramdown
 highlighter: rouge
@@ -51,7 +62,7 @@ exclude:
   - .jekyll-cache/
 
 code_blocks:
-  window_style: windows    # windows | macos | linux
+  window_style: macos    # windows | macos | linux
   line_numbers: true    # default for all blocks
   zebra: true
   gml: true             # enable client-side GML syntax highlighting

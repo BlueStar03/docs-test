@@ -1,9 +1,20 @@
-<div class="panel-header">
-  <span class="panel-title">On this page</span>
-</div>
+<header class="panel-header">
+  {% include theme-toggle.html %}
+
+  <h2 class="panel-title">On this page</h2>
+
+  <button type="button" class="panel-header-action" data-action="close-toc-panel" aria-label="Close table of contents">
+    <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+      <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" fill="none"/>
+    </svg>
+  </button>
+</header>
 
 <nav class="panel-nav"></nav>
 
-<div class="panel-footer">
-  {% if page.date %}<div>{{ page.date | date: "%b %-d, %Y" }}</div>{% endif %}
-</div>
+<footer class="panel-footer toc-panel-footer">
+  {%- comment -%}
+    Pass 5 will populate this with author / date / last-updated / tags.
+  {%- endcomment -%}
+  {% if page.date %}<div class="meta-item">{{ page.date | date: "%b %-d, %Y" }}</div>{% endif %}
+</footer>

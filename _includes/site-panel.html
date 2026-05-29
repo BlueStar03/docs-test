@@ -1,6 +1,22 @@
-<div class="panel-header">
-  <span class="panel-title">Navigation</span>
-</div>
+<header class="panel-header">
+  <button type="button" class="panel-header-action" data-action="close-site-panel" aria-label="Close site navigation">
+    <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+      <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" fill="none"/>
+    </svg>
+  </button>
+
+  <h2 class="panel-title">
+    <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+  </h2>
+
+  <div class="panel-header-logo">
+    {%- if site.logo -%}
+      <img src="{{ site.logo | relative_url }}" alt="" class="panel-header-logo-img">
+    {%- endif -%}
+  </div>
+</header>
+
+{% include search-box.html %}
 
 <nav class="panel-nav site-nav" aria-label="Site navigation">
   {%- if site.data.nav -%}
@@ -8,6 +24,27 @@
   {%- endif -%}
 </nav>
 
-<div class="panel-footer">
-  <span>© {{ 'now' | date: "%Y" }} {{ site.title }}</span>
-</div>
+<footer class="panel-footer site-panel-footer">
+  {%- if site.data.contact -%}
+    <div class="social-icons">
+      {%- for item in site.data.contact -%}
+        {%- if item.url and item.url != "" -%}
+          {%- assign is_external = false -%}
+          {%- if item.url contains '://' -%}{%- assign is_external = true -%}{%- endif -%}
+          <a class="social-link"
+             href="{% if is_external %}{{ item.url }}{% else %}{{ item.url | relative_url }}{% endif %}"
+             aria-label="{{ item.name }}"
+             title="{{ item.name }}"
+             {% if is_external %}target="_blank" rel="noopener"{% endif %}>
+            {%- if item.svg -%}
+              {{ item.svg }}
+            {%- else -%}
+              {%- include social-icon.html icon=item.icon -%}
+            {%- endif -%}
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+  <span class="site-copyright">&copy; {{ 'now' | date: "%Y" }} {{ site.title }}</span>
+</footer>

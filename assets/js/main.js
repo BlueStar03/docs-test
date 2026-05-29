@@ -1,38 +1,86 @@
 /* ===========================================================
-   Minimal panel toggle.
+   Panel toggles + persistence
 
    Behavior:
-   - data-action="toggle-site-panel" → toggles body.site-panel-open
-   - data-action="toggle-toc-panel"  → toggles body.toc-panel-open
-   - data-action="close-panels"      → removes both (used by backdrop)
+   - data-action="toggle-site-panel"  → toggle, save state
+   - data-action="toggle-toc-panel"   → toggle, save state
+   - data-action="close-site-panel"   → close site panel
+   - data-action="close-toc-panel"    → close TOC panel
+   - data-action="close-panels"       → close both (used by backdrop)
 
-   No localStorage. No theme switching. No TOC generation.
+   Rules:
+   - Desktop (>= 1024px): both panels can be open simultaneously
+   - Mobile (< 1024px):   opening one auto-closes the other
+   - State is always written to localStorage; the FOUC inline script
+     in default.html only reads it on desktop
    =========================================================== */
 
 (function () {
   'use strict';
 
+  var DESKTOP_BREAKPOINT = 1024;
+
+  function isDesktop() {
+    return window.innerWidth >= DESKTOP_BREAKPOINT;
+  }
+
+  function saveState() {
+    localStorage.setItem(
+      'site-panel',
+      document.body.classList.contains('site-panel-open') ? 'open' : 'closed'
+    );
+    localStorage.setItem(
+      'toc-panel',
+      document.body.classList.contains('toc-panel-open') ? 'open' : 'closed'
+    );
+  }
+
+  function openSitePanel() {
+    document.body.classList.add('site-panel-open');
+    if (!isDesktop()) document.body.classList.remove('toc-panel-open');
+    saveState();
+  }
+
+  function openTocPanel() {
+    document.body.classList.add('toc-panel-open');
+    if (!isDesktop()) document.body.classList.remove('site-panel-open');
+    saveState();
+  }
+
+  function closeSitePanel() {
+    document.body.classList.remove('site-panel-open');
+    saveState();
+  }
+
+  function closeTocPanel() {
+    document.body.classList.remove('toc-panel-open');
+    saveState();
+  }
+
   function toggleSitePanel() {
-    document.body.classList.toggle('site-panel-open');
+    if (document.body.classList.contains('site-panel-open')) closeSitePanel();
+    else openSitePanel();
   }
 
   function toggleTocPanel() {
-    document.body.classList.toggle('toc-panel-open');
+    if (document.body.classList.contains('toc-panel-open')) closeTocPanel();
+    else openTocPanel();
   }
 
   function closePanels() {
     document.body.classList.remove('site-panel-open');
     document.body.classList.remove('toc-panel-open');
+    saveState();
   }
 
   document.addEventListener('click', function (event) {
     var trigger = event.target.closest('[data-action]');
     if (!trigger) return;
-
     var action = trigger.dataset.action;
-
-    if (action === 'toggle-site-panel') toggleSitePanel();
+    if (action === 'toggle-site-panel')      toggleSitePanel();
     else if (action === 'toggle-toc-panel')  toggleTocPanel();
+    else if (action === 'close-site-panel')  closeSitePanel();
+    else if (action === 'close-toc-panel')   closeTocPanel();
     else if (action === 'close-panels')      closePanels();
   });
 })();

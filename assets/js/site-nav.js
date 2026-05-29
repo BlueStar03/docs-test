@@ -37,7 +37,7 @@
 
   function setupToggles(nav) {
     nav.addEventListener('click', function (e) {
-      var toggle = e.target.closest('.site-nav-toggle');
+      var toggle = e.target.closest('.site-nav-toggle, .site-nav-expander');
       if (!toggle) return;
       var group = toggle.closest('.site-nav-group');
       if (!group) return;
@@ -54,7 +54,9 @@
     var group = current.closest('.site-nav-group');
     while (group) {
       group.classList.add('expanded');
-      var toggle = group.querySelector(':scope > .site-nav-toggle');
+      var toggle = group.querySelector(
+        ':scope > .site-nav-toggle, :scope > .site-nav-linkable-row > .site-nav-expander'
+      );
       if (toggle) toggle.setAttribute('aria-expanded', 'true');
       var parent = group.parentElement;
       group = parent ? parent.closest('.site-nav-group') : null;

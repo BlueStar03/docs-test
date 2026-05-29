@@ -10,8 +10,9 @@
    - minLevel: lowest heading level to include (e.g. 2)
    - maxLevel: highest heading level to include (e.g. 3)
 
-   If no headings in range are found, the TOC panel and its
-   topbar toggle button are hidden entirely.
+   If no headings are found (or TOC is disabled), the panel still
+   renders with an empty-state message — it must remain accessible
+   because the theme toggle lives inside its header.
    =========================================================== */
 
 (function () {
@@ -19,14 +20,11 @@
 
   function init() {
     var config = window.TOC || {};
-    if (config.enabled === false) {
-      hideTocChrome();
-      return;
-    }
+    var enabled = config.enabled !== false;
 
     var article = document.querySelector('.markdown-body');
-    if (!article) {
-      hideTocChrome();
+    if (!article || !enabled) {
+      showEmptyState();
       return;
     }
 
@@ -42,7 +40,7 @@
     ).filter(function (h) { return h.id; });
 
     if (headings.length === 0) {
-      hideTocChrome();
+      showEmptyState();
       return;
     }
 
@@ -51,11 +49,12 @@
     setupClickHandler();
   }
 
-  function hideTocChrome() {
+  function showEmptyState() {
     var panel = document.getElementById('toc-panel');
-    var button = document.querySelector('[data-action="toggle-toc-panel"]');
-    if (panel) panel.style.display = 'none';
-    if (button) button.style.display = 'none';
+    if (!panel) return;
+    var nav = panel.querySelector('.panel-nav');
+    if (!nav) return;
+    nav.innerHTML = '<p class="toc-empty">No headings on this page.</p>';
   }
 
   function buildTocList(headings, minLevel) {

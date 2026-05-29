@@ -1,0 +1,32 @@
+# Social / contact links shown in the site-panel footer.
+# Each entry can have:
+#   - name: short label, used for aria-label and tooltip
+#   - url:  link target. Leave empty ("") to skip rendering this entry.
+#          External URLs (containing ://) auto-detect and open in a new tab.
+#   - icon: name of a built-in icon. See _includes/social-icon.html for
+#          the available set. Unknown names fall back to a generic "link".
+#   - svg:  inline SVG markup. Overrides `icon` if both are set.
+#          Use this for icons not in the built-in set
+#          (e.g. paste from simpleicons.org).
+#
+# Entries with empty URLs render nothing — they're here as templates
+# you can fill in or remove.
+
+- name: GitHub
+  url: "https://github.com/zBuLe"    # https://github.com/your-handle
+  icon: github
+
+- name: Mastodon
+  url: "https://github.com/zBuLe"    # https://your.instance/@you
+  icon: link
+  # Replace icon with a paste from simpleicons.org if you want the
+  # real brand mark, e.g.:
+  # svg: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="..."/></svg>'
+
+- name: RSS
+  url: "https://github.com/zBuLe"    # /feed.xml
+  icon: rss
+
+- name: Email
+  url: "https://github.com/zBuLe"    # mailto:you@example.com
+  icon: email
