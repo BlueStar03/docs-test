@@ -600,14 +600,14 @@
 .highlight .c1,
 .highlight .cm,
 .highlight .cp,
-.highlight .cs    { color: #6a737d; font-style: italic; } /* comments */
+.highlight .cs    { color: var(--syntax-comment); font-style: italic; } /* comments */
 
 .highlight .k,
 .highlight .kd,
 .highlight .kn,
 .highlight .kr,
 .highlight .kt,
-.highlight .kc    { color: #d73a49; }                     /* keywords */
+.highlight .kc    { color: var(--syntax-keyword); }                     /* keywords */
 
 .highlight .s,
 .highlight .s1,
@@ -618,34 +618,34 @@
 .highlight .sb,
 .highlight .sx,
 .highlight .sr,
-.highlight .dl    { color: #032f62; }                     /* strings */
+.highlight .dl    { color: var(--syntax-string); }                      /* strings */
 
 .highlight .m,
 .highlight .mi,
 .highlight .mf,
 .highlight .mh,
-.highlight .mo    { color: #005cc5; }                     /* numbers */
+.highlight .mo    { color: var(--syntax-number); }                      /* numbers */
 
 .highlight .o,
-.highlight .ow    { color: #d73a49; }                     /* operators */
+.highlight .ow    { color: var(--syntax-keyword); }                     /* operators */
 
 .highlight .nf,
 .highlight .nc,
-.highlight .nn    { color: #6f42c1; }                     /* function/class names */
+.highlight .nn    { color: var(--syntax-function); }                    /* function/class names */
 
-.highlight .na    { color: #005cc5; }                     /* attributes (HTML/XML) */
-.highlight .nt    { color: #22863a; }                     /* tags     (HTML/XML) */
-.highlight .nb    { color: #005cc5; }                     /* builtins */
-.highlight .nl    { color: #d73a49; }                     /* labels */
-.highlight .nd    { color: #6f42c1; }                     /* decorators */
-.highlight .py    { color: #005cc5; }                     /* properties */
+.highlight .na    { color: var(--syntax-number); }                      /* attributes (HTML/XML) */
+.highlight .nt    { color: var(--syntax-tag); }                         /* tags     (HTML/XML) */
+.highlight .nb    { color: var(--syntax-number); }                      /* builtins */
+.highlight .nl    { color: var(--syntax-keyword); }                     /* labels */
+.highlight .nd    { color: var(--syntax-function); }                    /* decorators */
+.highlight .py    { color: var(--syntax-number); }                      /* properties */
 .highlight .nv,
 .highlight .vi,
-.highlight .vg    { color: #e36209; }                     /* variables */
+.highlight .vg    { color: var(--syntax-variable); }                    /* variables */
 
 .highlight .p,
-.highlight .pi    { color: #24292e; }                     /* punctuation */
+.highlight .pi    { color: var(--syntax-punctuation); }                 /* punctuation */
 
-.highlight .err   { color: #b31d28; background: #ffeef0; } /* errors */
+.highlight .err   { color: var(--syntax-error-fg); background: var(--syntax-error-bg); } /* errors */
 
 .highlight .w     { color: inherit; }                     /* whitespace */

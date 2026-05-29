@@ -116,8 +116,8 @@ sql:
   color: "#e38c00"
 
 gml:
-  icon: '<svg viewBox="0 0 100 100" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="18" fill="#8b5cf6"/><text x="50" y="60" text-anchor="middle" font-size="26" font-family="Arial, sans-serif" font-weight="700" fill="white">GML</text></svg>'
-  color: "#8b5cf6"
+  icon: '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" fill="#04de80"/><rect x="1.2" y="1.2" width="21.6" height="21.6" fill="#1a1a1a"/><path d="M 4.2,11.996099 12.003904,4.2 19.8,12.0039 H 15.355405 L 11.996097,8.65575 8.6445947,12.0039 12.003904,15.352051 V 12.0039 h 3.351501 v 4.486949 L 12.003904,19.8 Z" fill="#ffffff"/></svg>'
+  color: "#04de80"
 
 gdscript:
   icon: '<img alt="GDScript" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/godot/godot-original.svg" width="16" height="16">'

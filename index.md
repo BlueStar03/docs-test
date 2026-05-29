@@ -770,7 +770,7 @@ var move_y = keyboard_check(ord("S")) - keyboard_check(ord("W"));
 x += move_x * 4;
 y += move_y * 4;
 ```
-{: file='obj_player_step.gml' window='windows' numbers='true' zebra='true' highlight='4-5' }
+{: file='obj_player_step.gml' numbers='true' zebra='true' highlight='4-5' }
 
 
 ---
