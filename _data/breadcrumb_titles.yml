@@ -1,0 +1,13 @@
+# Pretty names for URL segments used in breadcrumbs.
+# Map the URL segment (slug) to the display label.
+#
+# If a segment isn't listed here, breadcrumbs.html falls back to the
+# slug with hyphens replaced by spaces and the first letter capitalized:
+#   /api-reference/ -> "Api reference"
+#
+# Use this file to fix capitalization, expand abbreviations, etc.
+
+codeblocks: "Code Blocks"
+# admonitions: "Admonitions"
+# gml: "GML"
+# api: "API"

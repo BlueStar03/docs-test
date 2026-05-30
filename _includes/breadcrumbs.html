@@ -1,0 +1,49 @@
+{%- comment -%}
+  Auto-generated breadcrumbs derived from the page URL.
+  - Disable globally with `breadcrumbs: false` in _config.yml
+  - Disable per-page with `breadcrumbs: false` in front matter
+  - Auto-hidden on the home page (page.url == '/')
+  - Skip URL segments listed in `breadcrumbs_exclude` (_config.yml)
+  - Pretty-name segments via `site.data.breadcrumb_titles[segment]`
+{%- endcomment -%}
+
+{%- assign show_crumbs = true -%}
+{%- if site.breadcrumbs == false or page.breadcrumbs == false or page.url == '/' -%}
+  {%- assign show_crumbs = false -%}
+{%- endif -%}
+
+{%- if show_crumbs -%}
+  {%- assign segments = page.url | split: '/' -%}
+  {%- assign last_nonempty = '' -%}
+  {%- for s in segments -%}
+    {%- if s != '' -%}{%- assign last_nonempty = s -%}{%- endif -%}
+  {%- endfor -%}
+
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a class="crumb" href="{{ '/' | relative_url }}">{{ site.title | default: 'Home' }}</a>
+
+    {%- assign current_path = '' -%}
+    {%- for s in segments -%}
+      {%- if s == '' -%}{%- continue -%}{%- endif -%}
+
+      {%- assign skip = false -%}
+      {%- for ex in site.breadcrumbs_exclude -%}
+        {%- if s == ex -%}{%- assign skip = true -%}{%- endif -%}
+      {%- endfor -%}
+      {%- if skip -%}{%- continue -%}{%- endif -%}
+
+      {%- assign current_path = current_path | append: '/' | append: s -%}
+      {%- assign pretty = site.data.breadcrumb_titles[s] | default: nil -%}
+      {%- if pretty == nil -%}
+        {%- assign pretty = s | replace: '-', ' ' | replace: '%20', ' ' | capitalize -%}
+      {%- endif -%}
+
+      <span class="crumb-sep" aria-hidden="true">›</span>
+      {%- if s == last_nonempty -%}
+        <span class="crumb current" aria-current="page">{{ page.title | default: pretty }}</span>
+      {%- else -%}
+        <a class="crumb" href="{{ current_path | append: '/' | relative_url }}">{{ pretty }}</a>
+      {%- endif -%}
+    {%- endfor -%}
+  </nav>
+{%- endif -%}

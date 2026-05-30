@@ -8,6 +8,19 @@
 # Internal URLs should match Jekyll's page.url format (leading slash,
 # trailing slash, no baseurl). External URLs auto-detect and open in a new tab.
 
+- title: Home
+  url: /
+- title: Test
+  url: /test/
+- title: Text
+  url: /text/
+- title: Code Blocks
+  url: /codeblocks/
+- title: Neo
+  url: /neo/
+- title: about
+  url: /about/
+
 - title: Overview
   items:
     - title: Home

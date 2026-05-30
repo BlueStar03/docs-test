@@ -9,7 +9,6 @@ baseurl: "/docs-test"
 # site-panel header. Path relative to site root. Falls back to a
 # hamburger icon when unset.
 # logo: /assets/images/logo.svg
-logo: logo.svg
 
 # Optional: override theme toggle icons. Accepts emoji or any HTML
 # (e.g. an inline <svg>). Falls back to the built-in SVG sun/moon.
@@ -71,3 +70,9 @@ toc:
   enabled: true
   min_level: 2
   max_level: 3
+
+# Breadcrumbs — auto-generated from each page's URL.
+# Disable globally below, or per-page with `breadcrumbs: false` in front matter.
+# Override pretty names per URL segment in _data/breadcrumb_titles.yml.
+breadcrumbs: true
+breadcrumbs_exclude: ["assets", "images", "tags"]
