@@ -12,9 +12,59 @@
 
 <nav class="panel-nav"></nav>
 
+{%- comment -%}
+  Page metadata footer.
+  Author falls back to site.author if not set per-page.
+  Tags can wrap to multiple lines; other rows are single-line ellipsis.
+{%- endcomment -%}
+{%- assign meta_author = page.author | default: site.author -%}
+{%- assign has_tags = false -%}
+{%- if page.tags and page.tags.size > 0 -%}{%- assign has_tags = true -%}{%- endif -%}
+
+{%- if meta_author or page.date or page.last_modified_at or has_tags -%}
 <footer class="panel-footer toc-panel-footer">
-  {%- comment -%}
-    Pass 5 will populate this with author / date / last-updated / tags.
-  {%- endcomment -%}
-  {% if page.date %}<div class="meta-item">{{ page.date | date: "%b %-d, %Y" }}</div>{% endif %}
+  {%- if meta_author -%}
+    <div class="meta-item">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="8" cy="5.5" r="2.75"/>
+        <path d="M2.5 14c0-2.75 2.5-4.5 5.5-4.5s5.5 1.75 5.5 4.5"/>
+      </svg>
+      <span>{{ meta_author }}</span>
+    </div>
+  {%- endif -%}
+
+  {%- if page.date -%}
+    <div class="meta-item">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="3" width="12" height="11" rx="1.5"/>
+        <path d="M2 6.5h12M5 1.5v3M11 1.5v3"/>
+      </svg>
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
+    </div>
+  {%- endif -%}
+
+  {%- if page.last_modified_at -%}
+    <div class="meta-item">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="8" cy="8" r="6.25"/>
+        <path d="M8 4.5v3.75l2.5 1.5"/>
+      </svg>
+      <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">Updated {{ page.last_modified_at | date: "%b %-d, %Y" }}</time>
+    </div>
+  {%- endif -%}
+
+  {%- if has_tags -%}
+    <div class="meta-item meta-tags">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M2 8.5V2.5h6L14 8l-5.5 5.5z"/>
+        <circle cx="5" cy="5.5" r="0.9" fill="currentColor" stroke="none"/>
+      </svg>
+      <span>
+        {%- for tag in page.tags -%}
+          {{ tag }}{%- unless forloop.last -%}<span class="tag-sep">·</span>{%- endunless -%}
+        {%- endfor -%}
+      </span>
+    </div>
+  {%- endif -%}
 </footer>
+{%- endif -%}

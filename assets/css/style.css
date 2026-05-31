@@ -560,6 +560,56 @@ body.toc-panel-open  .toc-panel  { transform: translateX(0); }
 }
 
 /* ===========================================================
+   TOC panel footer — page metadata rows
+   =========================================================== */
+.toc-panel-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 20px;
+}
+
+.toc-panel-footer .meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+.toc-panel-footer .meta-item svg {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  opacity: 0.85;
+}
+
+.toc-panel-footer .meta-item time,
+.toc-panel-footer .meta-item > span {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Tags wrap to multiple lines when they overflow */
+.toc-panel-footer .meta-tags {
+  align-items: flex-start;
+}
+.toc-panel-footer .meta-tags svg {
+  margin-top: 2px;
+}
+.toc-panel-footer .meta-tags > span {
+  white-space: normal;
+}
+.toc-panel-footer .tag-sep {
+  margin: 0 4px;
+  opacity: 0.6;
+}
+
+/* ===========================================================
    Main content
    =========================================================== */
 .main-content {
